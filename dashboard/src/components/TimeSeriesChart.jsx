@@ -48,12 +48,12 @@ function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length || !label) return null;
   const ts = typeof label === "string" ? label : payload[0]?.payload?.timestamp ?? label;
   return (
-    <div className="bg-white rounded-lg shadow-md border border-gray-100 p-3 text-xs">
-      <div className="text-gray-500 font-normal mb-1">{ts}</div>
+    <div className="dark:bg-gray-900 bg-white rounded-lg shadow-md border border-gray-100 p-3 text-xs">
+      <div className="dark:text-gray-300 text-gray-500 font-normal mb-1">{ts}</div>
       {payload.map((p) => (
         <div key={p.dataKey} className="flex gap-2">
           <span style={{ color: p.color }}>{p.name}:</span>
-          <span className="text-gray-800 font-medium">{p.value != null ? Number(p.value).toFixed(1) : "—"}</span>
+          <span className="dark:text-gray-200 text-gray-800 font-medium">{p.value != null ? Number(p.value).toFixed(1) : "—"}</span>
         </div>
       ))}
     </div>
@@ -66,21 +66,22 @@ export default function TimeSeriesChart({ data }) {
   const warningRanges = computeWarningRanges(data);
 
   return (
-    <div className="dark:bg-zinc-800 bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-      <h2 className="text-gray-700 font-medium text-sm mb-4">Network performance over time</h2>
+    <div className="dark:bg-zinc-800 bg-white rounded-2xl shadow-sm border dark:border-zinc-700 border-gray-100 p-5">
+      <h2 className="dark:text-gray-200 text-gray-700  font-medium text-sm mb-4">Network performance over time</h2>
       <ResponsiveContainer width="100%" height={320}>
         <ComposedChart data={data} margin={{ top: 8, right: 8, left: 8, bottom: 8 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#737b88" />
           <XAxis
             dataKey="timestamp"
             tickFormatter={formatTime}
-            stroke="#9ca3af"
+            stroke="#737b88"
+            tick={{ fill: "#737b88" }}
             fontSize={11}
           />
-          <YAxis stroke="#9ca3af" fontSize={11} tickFormatter={(v) => (v != null ? String(v) : "")} />
-          <YAxis yAxisId="right" orientation="right" stroke="#9ca3af" fontSize={11} />
+          <YAxis stroke="#737b88" fontSize={11} tickFormatter={(v) => (v != null ? String(v) : "")} />
+          <YAxis yAxisId="right" orientation="right" stroke="#737b88" tick={{ fill: "#737b88" }} fontSize={11} />
           <Tooltip content={<CustomTooltip />} />
-          <Legend />
+          <Legend wrapperStyle={{ color: "#e5e7eb" }}/>
           {warningRanges.map((r, i) => (
             <ReferenceArea
               key={i}
@@ -116,7 +117,7 @@ export default function TimeSeriesChart({ data }) {
             dot={false}
             strokeWidth={2}
           />
-          <Brush dataKey="timestamp" height={24} stroke="#9ca3af" tickFormatter={formatTime} />
+          <Brush dataKey="timestamp" height={24} stroke="#9ca3af" fill="#1f2937" tickFormatter={formatTime} />
         </ComposedChart>
       </ResponsiveContainer>
     </div>

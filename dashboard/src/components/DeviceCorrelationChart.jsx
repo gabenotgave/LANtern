@@ -29,10 +29,10 @@ export default function DeviceCorrelationChart({ data }) {
 
   return (
     <div className="dark:bg-zinc-800 bg-white rounded-2xl shadow-sm border dark:border-zinc-700 border-gray-100 p-5">
-      <h2 className="text-gray-700 font-medium text-sm mb-4">Device count vs TTFB — correlation view</h2>
+      <h2 className="dark:text-gray-200 text-gray-700 font-medium text-sm mb-4">Device count vs TTFB — correlation view</h2>
       <ResponsiveContainer width="100%" height={260}>
         <ScatterChart margin={{ top: 8, right: 16, left: 32, bottom: 32 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#737b88" />
           <XAxis
             type="number"
             dataKey="x"
@@ -44,15 +44,15 @@ export default function DeviceCorrelationChart({ data }) {
               fontSize: 11,
               fill: "#6b7280",
             }}
-            stroke="#9ca3af"
+            stroke="#737b88"
             fontSize={11}
           />
           <YAxis
             type="number"
             dataKey="y"
             name="TTFB"
-            label={{ value: "TTFB (ms)", angle: -90, position: "insideLeft", fontSize: 11, fill: "#6b7280 " }}
-            stroke="#9ca3af"
+            label={{ value: "TTFB (ms)", angle: -90, position: "insideLeft", fontSize: 11, fill: "#6b7280" }}
+            stroke="#737b88"
             fontSize={11}
           />
           <ReferenceLine
@@ -67,9 +67,9 @@ export default function DeviceCorrelationChart({ data }) {
               if (!active || !payload?.[0]) return null;
               const p = payload[0].payload;
               return (
-                <div className="bg-white rounded-lg shadow-md border border-gray-100 p-2 text-xs">
-                  <div className="text-gray-500">Devices: {p.x}</div>
-                  <div className="text-gray-800 font-medium">TTFB: {p.y != null ? Number(p.y).toFixed(1) : "—"} ms</div>
+                <div className="dark:bg-zinc-800 bg-white rounded-lg shadow-md border border-gray-100 dark:border-zinc-700 p-2 text-xs">
+                  <div className="dark:text-gray-200 text-gray-800">Devices: {p.x}</div>
+                  <div className="dark:text-gray-200 text-gray-800 font-medium">TTFB: {p.y != null ? Number(p.y).toFixed(1) : "—"} ms</div>
                 </div>
               );
             }}

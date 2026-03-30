@@ -71,14 +71,14 @@ export default function AnalysisResultModal({ result, onClose }) {
 
             if (bulletLike) {
               return (
-                <div key={idx} className="text-gray-600 text-sm ml-3 leading-relaxed">
+                <div key={idx} className="text-gray-600 dark:text-gray-100 text-sm ml-3 leading-relaxed">
                   {trimmed}
                 </div>
               );
             }
 
             return (
-              <div key={idx} className="text-gray-600 text-sm leading-relaxed">
+              <div key={idx} className="text-gray-600 dark:text-gray-100 text-sm leading-relaxed">
                 {trimmed}
               </div>
             );
@@ -86,14 +86,14 @@ export default function AnalysisResultModal({ result, onClose }) {
         </div>
 
         <div className="border-t border-gray-100 px-6 py-4 flex items-center justify-between">
-          <div className="text-gray-400 text-xs">
+          <div className="text-gray-400 dark:text-gray-100 text-xs">
             {metaAnomalies} anomalies detected · {metaSamples} samples · {metaDuration} min
           </div>
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={handleCopy}
-              className="text-sm text-gray-600 hover:text-gray-900 border border-gray-200 rounded-lg px-3 py-1.5 transition-colors"
+              className="text-sm text-gray-600 dark:text-gray-100 hover:text-gray-900 border border-gray-200 rounded-lg px-3 py-1.5 transition-colors"
             >
               {copied ? "Copied!" : "Copy report"}
             </button>

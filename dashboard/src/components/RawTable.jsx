@@ -24,12 +24,12 @@ function cellClass(val, threshold, highIsGood = false) {
   const n = Number(val);
   if (Number.isNaN(n)) return "";
   if (highIsGood) {
-    if (n < threshold) return "bg-red-50 text-red-700";
-    if (n < threshold * 1.2) return "bg-amber-50 text-amber-700";
+    if (n < threshold) return "dark:bg-red-900/40 dark:text-red-400 bg-red-50 text-red-700 ";
+    if (n < threshold * 1.2) return "dark:bg-amber-900/40 dark:text-amber-400 bg-amber-50 text-amber-700 ";
     return "";
   }
-  if (n > threshold) return "bg-red-50 text-red-700";
-  if (n > threshold * 0.8 && n <= threshold) return "bg-amber-50 text-amber-700";
+  if (n > threshold) return "dark:bg-red-900/40 dark:text-red-400 bg-red-50 text-red-700";
+  if (n > threshold * 0.8 && n <= threshold) return "bg-amber-50 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400";
   return "";
 }
 
@@ -124,7 +124,7 @@ export default function RawTable() {
   if (error) {
     return (
       <div className="dark:bg-zinc-800 bg-white rounded-2xl shadow-sm border dark:border-zinc-700 border-gray-100 p-5">
-        <p className="text-red-400 text-sm">{error}</p>
+        <p className="dark:text-red-700 text-red-400 text-sm">{error}</p>
       </div>
     );
   }
@@ -147,7 +147,7 @@ export default function RawTable() {
                   type="datetime-local"
                   value={startInput}
                   onChange={(e) => setStartInput(e.target.value)}
-                  className="border border-gray-200 rounded-lg text-sm px-3 h-9 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="border border-gray-200 rounded-lg text-sm px-3 h-9 dark:bg-zinc-900 bg-white dark:text-zinc-100 text-gray-800 dark:placeholder-white  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </label>
               <label className="flex items-center gap-2 h-9">
@@ -156,7 +156,7 @@ export default function RawTable() {
                   type="datetime-local"
                   value={endInput}
                   onChange={(e) => setEndInput(e.target.value)}
-                  className="border border-gray-200 rounded-lg text-sm px-3 h-9 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="border border-gray-200 rounded-lg text-sm px-3 h-9 dark:bg-zinc-900 dark:text-zinc-100 text-gray-800 dark:placeholder-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </label>
               <button
@@ -292,7 +292,7 @@ export default function RawTable() {
           type="button"
           onClick={() => setPage((p) => Math.max(1, p - 1))}
           disabled={page <= 1}
-          className="text-sm text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="text-sm dark:text-gray-200 text-gray-600 dark:hover:text-gray-400  hover:text-gray-900 dark:disabled:text-zinc-600 disabled:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Previous
         </button>
@@ -303,7 +303,7 @@ export default function RawTable() {
           type="button"
           onClick={() => setPage((p) => p + 1)}
           disabled={end >= total}
-          className="text-sm text-gray-600 dark:text-gray-100 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="text-sm dark:text-gray-200 text-gray-600 dark:hover:text-gray-400  hover:text-gray-900 dark:disabled:text-zinc-600 disabled:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Next
         </button>
